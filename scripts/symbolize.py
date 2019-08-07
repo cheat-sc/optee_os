@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-2-Clause
 #
 # Copyright (c) 2017, Linaro Limited
@@ -106,8 +106,8 @@ class Symbolizer(object):
                                     stdout=subprocess.PIPE)
         except OSError as e:
             if e.errno == os.errno.ENOENT:
-                print >> sys.stderr, "*** Error:", cmd[0] + \
-                    ": command not found"
+                print("*** Error:{}: command not found".format(cmd[0]),
+                      file=sys.stderr)
                 sys.exit(1)
 
     def get_elf(self, elf_or_uuid):
@@ -205,7 +205,7 @@ class Symbolizer(object):
         if not reladdr or not self._addr2line:
             return '???'
         try:
-            print >> self._addr2line.stdin, reladdr
+            print(reladdr, file=self._addr2line.stdin)
             ret = self._addr2line.stdout.readline().rstrip('\n')
         except IOError:
             ret = '!!!'

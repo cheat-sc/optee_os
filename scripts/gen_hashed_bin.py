@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-2-Clause
 #
 # Copyright (c) 2014-2017, Linaro Limited
@@ -13,7 +13,6 @@ import hashlib
 
 arch_id = {'arm32': 0, 'arm64': 1}
 image_id = {'pager': 0, 'paged': 1}
-
 
 def write_header_v1(outf, init_size, args, paged_size):
     magic = 0x4554504f  # 'OPTE'
